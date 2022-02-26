@@ -1,14 +1,14 @@
 import assert from 'assert';
 
 describe('test setup', function () {
-  let testNum = null;
+  let testNum = 0;
 
   beforeEach(function () {
     testNum = 1;
   });
 
   afterEach(function () {
-    testNum = null;
+    testNum = 0;
   });
 
   it('should initialize test environment', function () {
