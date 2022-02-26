@@ -1,15 +1,15 @@
 import { createTheme } from '@mui/material/styles';
-import './font/font.css';
 
-const colours = {
-  lightPurple: '#a491d3',
-  lightBlue: '#007bff',
-  darkBlue: '#143642',
-  lightGrey: '#000d10',
-  success: '#4caf50',
-  error: '#e9453a',
-  black: '#000',
-};
+enum Color {
+  LightPurple = '#a491d3',
+  LightBlue = '#90caf9',
+  DarkBlue = '#2d5f70',
+  LightGray = '#e0e0e0',
+  Gray = '##9e9e9e',
+  DarkGray = '#616161',
+  Black = '#212121',
+  White = '#fafafa',
+}
 
 export const theme = createTheme({
   typography: {
@@ -41,30 +41,24 @@ export const theme = createTheme({
     },
   },
   palette: {
-    primary: {
-      main: colours.lightPurple,
-    },
-    secondary: {
-      main: colours.lightBlue,
-    },
-    grey: {
-      light: colours.lightGrey,
+    gray: {
+      main: Color.Gray,
+      light: Color.LightGray,
+      dark: Color.DarkGray,
     },
     blue: {
-      light: colours.lightBlue,
-      dark: colours.darkBlue,
+      light: Color.LightBlue,
+      dark: Color.DarkBlue,
     },
-    black: {
-      main: colours.black,
+    black: Color.Black,
+    white: Color.White,
+    primary: {
+      main: Color.LightPurple,
     },
-    success: {
-      main: colours.success,
-    },
-    error: {
-      main: colours.error,
+    secondary: {
+      main: Color.LightBlue,
     },
   },
-  props: {},
   components: {
     MuiButton: {
       styleOverrides: {
@@ -79,7 +73,7 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           '& a': {
-            color: colours.lightPurple,
+            color: Color.LightPurple,
           },
         },
       },

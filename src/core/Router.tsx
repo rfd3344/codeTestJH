@@ -4,7 +4,7 @@ import { Home } from 'src/home/Home';
 import { Login } from 'src/login/Login';
 import { Post } from 'src/post/Post';
 
-export function Router() {
+export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -14,4 +14,4 @@ export function Router() {
       </Routes>
     </BrowserRouter>
   );
-}
+};

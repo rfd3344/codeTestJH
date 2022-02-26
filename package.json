@@ -71,6 +71,7 @@
     "@storybook/preset-create-react-app": "^4.0.1",
     "@storybook/react": "^6.4.19",
     "@storybook/testing-library": "^0.0.9",
+    "@types/redux-logger": "^3.0.9",
     "webpack": "^5.69.1"
   }
 }

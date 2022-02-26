@@ -1,13 +1,8 @@
 import { Snackbar, Alert, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-
 import { useDispatch, useSelector } from 'react-redux';
-import { closeSnackbar } from './snackbarSlice';
 
-// limit message to 500 characters
-const trimmedString = (str = '', limitSize = 500) => {
-  return str.length > limitSize ? `${str.substring(0, limitSize - 3)}...` : str;
-};
+import { closeSnackbar } from './snackbarSlice';
 
 const useStyles = makeStyles(() => ({
   alert: {
@@ -22,7 +17,7 @@ export const GlobalSnackbar = () => {
   const dispatch = useDispatch();
   const snackbar = useSelector((state) => state.common?.snackbar) || {};
 
-  const handleClose = (event, reason) => {
+  const handleClose = (_e, reason) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -41,7 +36,7 @@ export const GlobalSnackbar = () => {
         onClose={handleClose}
         severity={snackbar.isError ? 'error' : 'success'}
       >
-        {trimmedString(snackbar.message)}
+        {snackbar.message}
       </Alert>
     </Snackbar>
   );

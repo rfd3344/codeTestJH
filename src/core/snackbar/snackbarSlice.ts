@@ -1,32 +1,38 @@
 import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
 
+import { trimmedString } from 'src/utils/stringUtils';
+
+const defaultErrorMessage = 'A server error occurred, please try again later.';
+const defaultSuccessMessage = 'Scuccess';
+
 export const snackbarSlice = createSlice({
   name: 'snackbar',
   initialState: {
     open: false,
     isError: false,
-    message: 'A server error occurred, please try again later.',
+    message: '',
   },
   reducers: {
     openSnackbar: (state, action) => {
       const { payload = {} } = action;
       if (payload.isError) {
         state.isError = true;
-        state.message =
-          payload.message || 'A server error occurred, please try again later.';
+        state.message = payload.message || defaultErrorMessage;
       } else {
         state.isError = false;
-        state.message = payload.message || payload || 'Success';
+        state.message = payload || defaultSuccessMessage;
       }
       state.open = true;
     },
     openErrorBar: (state, action) => {
+      const { payload } = action;
       return {
         open: true,
         isError: true,
         message:
-          action.payload || 'A server error occurred, please try again later',
+          trimmedString(payload) ||
+          'A server error occurred, please try again later',
       };
     },
     closeSnackbar: (state, action) => {
