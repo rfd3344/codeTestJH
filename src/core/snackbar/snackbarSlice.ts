@@ -14,33 +14,28 @@ export const snackbarSlice = createSlice({
     message: '',
   },
   reducers: {
-    openSnackbar: (state, action) => {
-      const { payload = {} } = action;
-      if (payload.isError) {
-        state.isError = true;
-        state.message = payload.message || defaultErrorMessage;
-      } else {
-        state.isError = false;
-        state.message = payload || defaultSuccessMessage;
-      }
-      state.open = true;
+    openSuccessBar: (_state, action) => {
+      const { payload = '' } = action;
+      return {
+        open: true,
+        isError: false,
+        message: trimmedString(payload) || defaultSuccessMessage,
+      };
     },
-    openErrorBar: (state, action) => {
-      const { payload } = action;
+    openErrorBar: (_state, action) => {
+      const { payload = '' } = action;
       return {
         open: true,
         isError: true,
-        message:
-          trimmedString(payload) ||
-          'A server error occurred, please try again later',
+        message: trimmedString(payload) || defaultErrorMessage,
       };
     },
-    closeSnackbar: (state, action) => {
+    closeSnackbar: (state, _action) => {
       state.open = false;
     },
   },
 });
 
-export const { openSnackbar, openErrorBar, closeSnackbar } =
+export const { openSuccessBar, openErrorBar, closeSnackbar } =
   snackbarSlice.actions;
 export default snackbarSlice.reducer;
