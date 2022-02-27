@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import { TextFieldHookForm } from './TextFieldHookForm';
+import { InputField } from './InputField';
 
 export default {
-  title: 'Components/inputs/TextFieldHookForm',
-  component: TextFieldHookForm,
+  title: 'Components/inputs/InputField',
+  component: InputField,
   argTypes: {},
   args: {
     name: 'name',
@@ -13,25 +13,25 @@ export default {
   },
 };
 
-export const Default = (args) => {
+export const Default = (args: any) => {
   const [value, setValue] = useState(args.value);
   return (
-    <TextFieldHookForm
-      {...args}
+    <InputField
       value={value}
       onChange={(e) => setValue(e.target.value)}
+      {...args}
     />
   );
 };
 
-export const NoDebounce = (args) => {
+export const NoDebounce = (args: any) => {
   const [value, setValue] = useState(args.value);
   return (
-    <TextFieldHookForm
-      {...args}
+    <InputField
       value={value}
       debounce={false}
       onChange={(e) => setValue(e.target.value)}
+      {...args}
     />
   );
 };

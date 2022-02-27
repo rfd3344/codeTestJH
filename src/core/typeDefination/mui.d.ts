@@ -1,6 +1,13 @@
-import { PaletteOptions } from '@mui/material/styles/createPalette';
+import type { Theme } from '@mui/material/styles';
+import type { PaletteOptions } from '@mui/material/styles/createPalette';
+
+declare module '@mui/styles/defaultTheme' {
+
+  interface DefaultTheme extends Theme {}
+}
 
 declare module '@mui/material/styles/createPalette' {
+
   export interface PaletteOptions {
     gray: {
       main: string;

@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { FormControl, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import _ from 'lodash';
@@ -16,25 +16,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function TextFieldHookForm({
+type Props = {
+  name: string;
+  value?: string;
+  label?: string;
+  onChange?: (e: any) => void;
+  formObj?: any;
+  debounce?: number;
+};
+
+/***
+ * input field component
+ * @param name - required
+ * @param debounce - delay time to trigger onChange event
+ *
+ */
+export const InputField: FC<Props> = ({
   name, // required
   value = '',
-  onChange = (e) => {},
-  formObj,
-  debounce = 200, // time of debonce
   label,
+  onChange = (e) => {},
+  formObj = {},
+  debounce = 200, // time of debonce
   ...rest
-}) {
+}) => {
   const classes = useStyles();
-  const { register, errors } = formObj || {};
+  const { register, errors } = formObj;
   if (!name) {
-    console.error('TextFieldHookForm must have `name` prop');
+    console.error('InputField must have `name` prop');
     return null;
   }
 
   const handleChange = debounce
     ? _.debounce((e) => onChange(e), debounce)
-    : (e) => onChange(e);
+    : (e: any) => onChange(e);
 
   return (
     <FormControl fullWidth>
@@ -49,9 +64,8 @@ export function TextFieldHookForm({
         onChange={(e) => handleChange(e)}
         error={_.has(errors, name)}
         helperText={_.get(errors, `${name}.message`)}
-        inputProps={{ 'data-testid': 'textField-input' }}
         {...rest}
       />
     </FormControl>
   );
-}
+};

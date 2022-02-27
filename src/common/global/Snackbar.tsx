@@ -1,23 +1,22 @@
-import React from 'react';
-import { Snackbar, Alert, Button } from '@mui/material';
+import React, { FC } from 'react';
+import { Snackbar as SnackBarMui, Alert } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { RootState } from 'src/core/store';
 
 import { closeSnackbar } from './snackbarSlice';
 
-export const GlobalSnackbar = () => {
+export const Snackbar: FC = () => {
   const dispatch = useDispatch();
-  const snackbar =
-    useSelector((state: RootState) => state.common?.snackbar) || {};
+  const { snackbar } = useSelector((state: RootState) => state.common);
 
-  const handleClose = (e: React.SyntheticEvent | Event, reason?: string) => {
+  const handleClose = (_e: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') return;
 
     dispatch(closeSnackbar(''));
   };
 
   return (
-    <Snackbar
+    <SnackBarMui
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       open={snackbar.open}
       autoHideDuration={3000}
@@ -29,6 +28,6 @@ export const GlobalSnackbar = () => {
       >
         {snackbar.message}
       </Alert>
-    </Snackbar>
+    </SnackBarMui>
   );
 };

@@ -12,6 +12,7 @@ enum Color {
 }
 
 export const theme = createTheme({
+  spacing: 4,
   typography: {
     fontSize: 18,
     fontFamily: '"Space Grotesk"',

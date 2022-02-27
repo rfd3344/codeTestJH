@@ -3,17 +3,17 @@ import { render, fireEvent, waitFor } from '@testing-library/react';
 
 import { MockTheme } from 'src/utils/testUtils';
 
-import { TextFieldHookForm } from './TextFieldHookForm';
+import { InputField } from './InputField';
 
 describe('TextFieldHookForm', function () {
   it('should render TextFieldHookForm', async function () {
     let value = '';
-    const handleChange = (e) => {
+    const handleChange = (e: any) => {
       value = e.target.value;
     };
-    const { queryAllByTestId, queryAllByText } = render(
+    const { container, debug } = render(
       <MockTheme>
-        <TextFieldHookForm
+        <InputField
           name="name"
           label="labelTest"
           value="value"
@@ -21,8 +21,9 @@ describe('TextFieldHookForm', function () {
         />
       </MockTheme>
     );
-    const label = queryAllByText('labelTest');
-    const textField = queryAllByTestId('textField-input');
+
+    const label = container.querySelectorAll('.MuiInputLabel-root');
+    const textField = container.querySelectorAll('.MuiInput-input');
     assert.equal(label.length, 1);
     assert.equal(textField.length, 1);
     fireEvent.change(textField[0], { target: { value: 'nextValue' } });

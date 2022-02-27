@@ -15,19 +15,19 @@ export const snackbarSlice = createSlice({
   },
   reducers: {
     openSuccessBar: (_state, action) => {
-      const { payload = successMessage } = action;
+      const { payload } = action;
       return {
         open: true,
         isError: false,
-        message: trimmedString(payload),
+        message: trimmedString(payload) || successMessage,
       };
     },
     openErrorBar: (_state, action) => {
-      const { payload = errorMessage } = action;
+      const { payload } = action;
       return {
         open: true,
         isError: true,
-        message: trimmedString(payload),
+        message: trimmedString(payload) || errorMessage,
       };
     },
     closeSnackbar: (state, _action) => {

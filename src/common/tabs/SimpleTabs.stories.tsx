@@ -15,4 +15,4 @@ export default {
   },
 };
 
-export const Default = (args) => <SimpleTabs {...args} />;
+export const Default = (args: any) => <SimpleTabs {...args} />;

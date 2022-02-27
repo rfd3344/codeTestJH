@@ -1,9 +1,10 @@
 import { FC } from 'react';
-import { Container, Box, Button } from '@mui/material';
+import { Container, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { openSuccessBar, openErrorBar } from 'src/core/snackbar/snackbarSlice';
+import { openSuccessBar, openErrorBar } from 'src/common/global/snackbarSlice';
+import { InputField } from 'src/common/inputs/InputField';
 
 export const Home: FC = () => {
   const dispatch = useDispatch();
@@ -12,10 +13,13 @@ export const Home: FC = () => {
       <Button variant="contained" color="primary" component={Link} to="/login">
         Go to Login Page
       </Button>
-      <Button onClick={() => dispatch(openSuccessBar(''))}>
+      <Button variant="contained" onClick={() => dispatch(openSuccessBar(''))}>
         openSuccessBar
       </Button>
-      <Button onClick={() => dispatch(openErrorBar(''))}>openFailureBar</Button>
+      <Button variant="contained" onClick={() => dispatch(openErrorBar(''))}>
+        openFailureBar
+      </Button>
+      <InputField name="name" />
     </Container>
   );
 };

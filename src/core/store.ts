@@ -1,9 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 
-import snackbar from 'src/core/snackbar/snackbarSlice';
-import login from 'src/login/loginSlice';
-import post from 'src/post/postSlice';
+import snackbar from 'src/common/global/snackbarSlice';
 
 const common = combineReducers({
   snackbar,
@@ -11,8 +9,6 @@ const common = combineReducers({
 
 export const store = configureStore({
   reducer: {
-    login,
-    post,
     common,
   },
   middleware:
