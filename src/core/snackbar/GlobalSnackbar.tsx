@@ -1,5 +1,5 @@
+import React from 'react';
 import { Snackbar, Alert, Button } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
 
@@ -10,10 +10,7 @@ export const GlobalSnackbar = () => {
   const snackbar =
     useSelector((state: RootState) => state.common?.snackbar) || {};
 
-  const handleClose = (
-    event: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
+  const handleClose = (e: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') return;
 
     dispatch(closeSnackbar(''));

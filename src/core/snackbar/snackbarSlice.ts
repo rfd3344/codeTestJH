@@ -3,8 +3,8 @@ import _ from 'lodash';
 
 import { trimmedString } from 'src/utils/stringUtils';
 
-const defaultErrorMessage = 'A server error occurred, please try again later.';
-const defaultSuccessMessage = 'Scuccess';
+const errorMessage = 'A server error occurred, please try again later.';
+const successMessage = 'Scuccess';
 
 export const snackbarSlice = createSlice({
   name: 'snackbar',
@@ -15,19 +15,19 @@ export const snackbarSlice = createSlice({
   },
   reducers: {
     openSuccessBar: (_state, action) => {
-      const { payload = '' } = action;
+      const { payload = successMessage } = action;
       return {
         open: true,
         isError: false,
-        message: trimmedString(payload) || defaultSuccessMessage,
+        message: trimmedString(payload),
       };
     },
     openErrorBar: (_state, action) => {
-      const { payload = '' } = action;
+      const { payload = errorMessage } = action;
       return {
         open: true,
         isError: true,
-        message: trimmedString(payload) || defaultErrorMessage,
+        message: trimmedString(payload),
       };
     },
     closeSnackbar: (state, _action) => {
