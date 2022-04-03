@@ -12,6 +12,7 @@ console.warn('process.env.NODE_ENV', process.env.NODE_ENV);
 export const store = configureStore({
   reducer,
 
+  // TODOS: cannot hidden logs for production
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
   devTools: process.env.NODE_ENV !== 'production',
   // middleware:
