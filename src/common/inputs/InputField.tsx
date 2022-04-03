@@ -1,20 +1,20 @@
 import { FC } from 'react';
 import { FormControl, TextField } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+// import { makeStyles } from '@mui/styles';
 import _ from 'lodash';
 
-const useStyles = makeStyles((theme) => ({
-  textField: {
-    marginTop: theme.spacing(1),
-    '& .MuiInput-root': {
-      marginTop: theme.spacing(3),
-    },
-    '& .MuiInputLabel-root': {
-      fontSize: '22px',
-      color: 'black',
-    },
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   textField: {
+//     marginTop: theme.spacing(1),
+//     '& .MuiInput-root': {
+//       marginTop: theme.spacing(3),
+//     },
+//     '& .MuiInputLabel-root': {
+//       fontSize: '22px',
+//       color: 'black',
+//     },
+//   },
+// }));
 
 type Props = {
   name: string;
@@ -40,7 +40,6 @@ export const InputField: FC<Props> = ({
   debounce = 200, // time of debonce
   ...rest
 }) => {
-  const classes = useStyles();
   const { register, errors } = formObj;
   if (!name) {
     console.error('InputField must have `name` prop');
@@ -54,7 +53,17 @@ export const InputField: FC<Props> = ({
   return (
     <FormControl fullWidth>
       <TextField
-        className={classes.textField}
+        // className={classes.textField}
+        sx={{
+          marginTop: (theme) => theme.spacing(1),
+          '& .MuiInput-root': {
+            marginTop: (theme) => theme.spacing(3),
+          },
+          '& .MuiInputLabel-root': {
+            fontSize: '22px',
+            color: 'black',
+          },
+        }}
         name={name}
         label={label || `${_.capitalize(_.startCase(name))}`}
         variant="standard"
