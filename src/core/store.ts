@@ -3,14 +3,16 @@ import logger from 'redux-logger';
 
 import snackbar from 'src/common/global/snackbarSlice';
 
-const reducer = combineReducers({
-  common: { snackbar },
+const common = combineReducers({
+  snackbar,
 });
 
 console.warn('process.env.NODE_ENV', process.env.NODE_ENV);
 
 export const store = configureStore({
-  reducer,
+  reducer: {
+    common,
+  },
 
   // TODOS: cannot hidden logs for production
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
